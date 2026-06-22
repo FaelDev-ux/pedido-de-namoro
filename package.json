@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@fontsource/pixelify-sans": "^5.2.7",
+    "canvas-confetti": "^1.9.4",
     "lucide-react": "^1.21.0",
+    "matter-js": "^0.20.0",
     "motion": "^12.40.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
