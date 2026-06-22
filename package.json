@@ -8,6 +8,13 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "dependencies": {
+    "@fontsource/pixelify-sans": "^5.2.7",
+    "lucide-react": "^1.21.0",
+    "motion": "^12.40.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
   "devDependencies": {
     "vite": "^7.0.0"
   }
