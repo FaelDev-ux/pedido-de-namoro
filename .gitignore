@@ -6,3 +6,5 @@ dist/
 .ngrok.pid
 .tunnel-*.log
 .tunnel.pid
+
+.vercel
