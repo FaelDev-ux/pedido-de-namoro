@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#17132b" />
+    <meta name="description" content="Uma aventura ultrassecreta criada especialmente para Rebeca." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Missão Rebeca" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Missão Rebeca ✦ Uma aventura sobre nós</title>
+  </head>
+  <body>
+    <div class="film-grain" aria-hidden="true"></div>
+
+    <main id="app">
+      <section class="cover-screen active" id="coverScreen">
+        <div class="cover-sky" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+          <div class="cover-moon"></div>
+          <div class="cover-cloud c1"></div><div class="cover-cloud c2"></div>
+          <div class="cover-hills h1"></div><div class="cover-hills h2"></div>
+        </div>
+
+        <header class="cover-header">
+          <div class="game-logo"><span>R</span><b>MISSÃO<br />REBECA</b></div>
+          <button class="round-tool install-trigger" type="button" aria-label="Instalar no iPhone">↥</button>
+        </header>
+
+        <div class="cover-copy">
+          <div class="classified-tag"><i></i> uma transmissão de Rafael para Rebeca</div>
+          <p class="chapter-label">CAPÍTULO ZERO</p>
+          <h1>Sete planetas<br />perderam uma<br /><em>palavra.</em></h1>
+          <p class="cover-lead">Uma transmissão chegou do futuro. O universo esqueceu como se escreve <strong>“nós”</strong> — e só você pode consertar isso.</p>
+        </div>
+
+        <div class="hero-diorama" aria-hidden="true">
+          <div class="pingo-preview"><span>♥</span><i></i><i></i></div>
+          <div class="hero-speech">psiu… ela chegou! ✦</div>
+          <canvas class="cover-pixel-hero" id="coverPixelHero" width="180" height="220" aria-hidden="true"></canvas>
+          <div class="tiny-flowers">✦　✿　·　✦　❀　·　✿</div>
+        </div>
+
+        <div class="mission-envelope">
+          <span class="envelope-number">01</span>
+          <div><small>SUA MISSÃO, CASO ACEITE</small><strong>Atravesse 7 mundos, recupere 6 selos orbitais e descubra quem enviou a última estrela.</strong></div>
+        </div>
+
+        <button class="start-adventure" id="startAdventure" type="button">
+          <span><small>TOCAR PARA</small>começar a aventura</span><b>→</b>
+        </button>
+        <p class="cover-tip">uma aventura cósmica de Rafael para Rebeca · fones recomendados</p>
+      </section>
+
+      <section class="game-screen" id="gameScreen">
+        <header class="game-hud">
+          <div class="hud-mission">
+            <small id="hudChapter">CAPÍTULO 1/5</small>
+            <strong id="hudTitle">A praça do acaso</strong>
+          </div>
+          <div class="hud-actions" id="reactHudControls"></div>
+        </header>
+
+        <div class="fragment-bar" aria-label="Selos orbitais recuperados">
+          <span data-fragment="0"><i>⌁</i><small>SINAL</small></span>
+          <b></b>
+          <span data-fragment="1"><i>☀</i><small>RISO</small></span>
+          <b></b>
+          <span data-fragment="2"><i>♥</i><small>AFETO</small></span>
+          <b></b>
+          <span data-fragment="3"><i>✦</i><small>LUZ</small></span>
+          <b></b>
+          <span data-fragment="4"><i>∞</i><small>FUTURO</small></span>
+          <b></b>
+          <span data-fragment="5"><i>⚡</i><small>CORAGEM</small></span>
+        </div>
+
+        <div class="orbit-route" id="orbitRoute" aria-label="Rota pelos sete mundos">
+          <span class="active" data-orbit="0"><i></i><small>BASE</small></span><b></b>
+          <span data-orbit="1"><i></i><small>RISO-47</small></span><b></b>
+          <span data-orbit="2"><i></i><small>SAUDADE</small></span><b></b>
+          <span data-orbit="3"><i></i><small>REBECA</small></span><b></b>
+          <span data-orbit="4"><i></i><small>AMANHÃ</small></span><b></b>
+          <span data-orbit="5"><i></i><small>NÃO DITO</small></span><b></b>
+          <span data-orbit="6"><i></i><small>???</small></span>
+        </div>
+
+        <div class="game-frame">
+          <canvas id="worldCanvas" width="900" height="600" aria-label="Mundo explorável da Missão Rebeca"></canvas>
+          <div class="scene-ribbon" id="sceneRibbon"><small>VOCÊ CHEGOU EM</small><strong>A Praça do Acaso</strong></div>
+          <div class="mission-counter" id="missionCounter">pistas <b>0/3</b></div>
+          <div class="interaction-hint" id="interactionHint"><kbd>E</kbd><span>investigar</span></div>
+          <div class="tap-hint" id="tapHint">toque no chão para caminhar</div>
+        </div>
+
+        <div class="dialogue-box" id="dialogueBox">
+          <div class="dialogue-avatar"><span>♥</span><i></i><i></i></div>
+          <div><small id="dialogueSpeaker">PINGO · GUIA EMOCIONAL</small><p id="dialogueText">Rebeca! Finalmente. Precisamos de alguém corajoso — e, aparentemente, muito bonito — para resolver isto.</p></div>
+        </div>
+
+        <div class="game-controls">
+          <div class="joystick" id="joystick" aria-label="Joystick analógico de movimento">
+            <div class="joystick-base">
+              <i></i><i></i><i></i><i></i>
+              <div class="joystick-knob" id="joystickKnob"><span>♥</span></div>
+            </div>
+            <small>ARRASTE PARA ANDAR · BORDA PARA CORRER</small>
+          </div>
+          <div class="desktop-keys" aria-hidden="true">
+            <div><kbd>W</kbd><span><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span></div>
+            <small>mover personagem</small>
+          </div>
+          <button class="action-button" id="actionButton" type="button"><span>✦</span><b id="actionLabel">AGIR</b><small>TOQUE</small></button>
+          <div class="control-legend"><span><kbd>WASD</kbd> andar</span><span><kbd>E</kbd> agir</span><span>duplo toque corre</span></div>
+        </div>
+      </section>
+
+      <section class="final-screen" id="finalScreen">
+        <div class="final-sky" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><div class="shooting-star"></div></div>
+        <div class="final-cinematic" id="finalCinematic">
+          <div class="cinematic-stars" aria-hidden="true"></div>
+          <small id="finalCinematicKicker">COORDENADA FINAL ENCONTRADA</small>
+          <h2 id="finalCinematicText">A última estrela<br />não estava sozinha.</h2>
+          <canvas id="finalConstellation" width="700" height="250" aria-label="Constelação de Rebeca e Rafael"></canvas>
+          <canvas id="finalCharacters" width="360" height="190" aria-label="Rebeca encontra Rafael no último planeta"></canvas>
+          <p id="finalCinematicCaption">RAFAEL ENTROU NA PARTIDA ✦</p>
+          <button id="skipFinalCinematic" type="button">tocar para avançar</button>
+        </div>
+        <div class="final-content waiting" id="finalContent">
+          <div class="final-kicker">AS SEIS ÓRBITAS VOLTARAM A BRILHAR</div>
+          <p class="final-to">Para Rebeca,</p>
+          <h2>A última estrela<br />era uma pergunta.</h2>
+          <p class="final-letter">Eu inventei planetas porque uma frase só parecia pequena demais. Em cada mundo escondi uma verdade: eu gosto do seu sorriso, sinto falta de você antes mesmo de ir embora e quero descobrir futuros que tenham as nossas risadas espalhadas por eles. No fim, o mistério sempre foi simples: meu universo ficou muito mais bonito depois que encontrou você.<span class="final-signature">— Rafael, seu astronauta emocionado</span></p>
+
+          <div class="ring-cinematic" aria-label="Caixinha de aliança aberta">
+            <div class="ring-rays"></div>
+            <span class="spark a">✦</span><span class="spark b">✧</span><span class="spark c">✦</span>
+            <div class="final-ring"><i></i></div>
+            <div class="final-lid"></div>
+            <div class="final-box"><i></i></div>
+            <div class="final-shadow"></div>
+          </div>
+
+          <div class="proposal-panel" id="proposalPanel">
+            <small>MISSÃO SECRETA 07 · INICIAR UMA NOVA ÓRBITA</small>
+            <h3>Rebeca, quer<br />namorar comigo?</h3>
+            <div class="proposal-buttons" id="proposalButtons">
+              <button class="accept-button" id="acceptButton" type="button"><span>SIM!</span><small>começar nossa melhor fase</small></button>
+              <button class="decline-button" id="declineButton" type="button">não</button>
+            </div>
+          </div>
+
+          <div class="accepted-panel" id="acceptedPanel">
+            <div class="accepted-seal">✓</div>
+            <small>MISSÃO LENDÁRIA CONCLUÍDA</small>
+            <h3>Agora o mapa diz:<br /><em>Rebeca + Rafael.</em></h3>
+            <p>Namoro desbloqueado · beijos ilimitados · novas aventuras em breve</p>
+            <button id="shareMoment" type="button">guardar este momento ♡</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="cinematic-transition" id="cinematicTransition">
+      <div class="transition-symbol">✦</div><small id="transitionChapter">CAPÍTULO 2</small><strong id="transitionTitle">O bosque dos corações perdidos</strong>
+    </div>
+
+    <dialog class="story-modal" id="storyModal">
+      <div class="story-modal-inner" id="storyModalContent"></div>
+    </dialog>
+
+    <dialog class="install-modal" id="installModal">
+      <button class="modal-close" type="button" aria-label="Fechar">×</button>
+      <div class="install-app-icon">♥</div>
+      <small>LEVE A AVENTURA COM VOCÊ</small>
+      <h2>Instale a<br />Missão Rebeca</h2>
+      <p>No iPhone, abra pelo <strong>Safari</strong> e siga estes passos:</p>
+      <ol>
+        <li><b>1</b><span>Toque em <strong>Compartilhar</strong><small>o quadradinho com a seta para cima ↥</small></span></li>
+        <li><b>2</b><span>Escolha <strong>Adicionar à Tela de Início</strong><small>talvez seja preciso rolar a lista</small></span></li>
+        <li><b>3</b><span>Toque em <strong>Adicionar</strong><small>pronto: agora virou um app</small></span></li>
+      </ol>
+      <button class="install-ok" type="button">entendi, vamos jogar ✦</button>
+    </dialog>
+
+    <div class="achievement" id="achievement"><i id="achievementIcon">✦</i><div><small id="achievementKicker">SELO ORBITAL RECUPERADO</small><strong id="achievementName">Sinal impossível</strong></div></div>
+    <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+    <script type="module" src="/app.jsx"></script>
+  </body>
+</html>
